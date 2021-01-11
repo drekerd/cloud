@@ -1,0 +1,88 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.drekerd'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+/*    acceptanceTestsCompile.extendsFrom testCompile
+    acceptanceTestsRuntime.extendsFrom testRuntime*/
+
+    acceptanceTestsImplementation.extendsFrom testImplementation
+/*    acceptanceTestsRuntime.extendsFrom testRuntime
+    acceptanceTeststestAnnotationProcessor.extendsFrom testAnnotationProcessor*/
+}
+
+sourceSets {
+    acceptanceTests {
+        java {
+            srcDir file('src/acceptanceTests/java')
+        }
+        resources.srcDir file('src/acceptanceTests/resources')
+    }
+}
+
+task acceptanceTests(type: Test) {
+    useJUnitPlatform()
+    dependsOn 'clean', 'build'
+
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+
+
+    description = 'Runs the acceptance tests'
+    /*group = 'verification'*/
+    testClassesDirs = sourceSets.acceptanceTests.output
+    classpath = sourceSets.acceptanceTests.runtimeClasspath
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'io.cucumber:cucumber-java:5.6.0'
+    testImplementation 'io.cucumber:cucumber-junit:5.6.0'
+
+    /*implementation('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+    }*/
+
+    acceptanceTestsImplementation('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+    }
+
+    /*
+    testCompile('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+    }
+
+    acceptanceTestsCompile('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+    }
+
+    testRuntimeOnly('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+    }*/
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
