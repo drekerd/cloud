@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  pricelist:
+    driver_opts:
+      com.docker.network.bridge.name: pricelist
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.1/16
+services:
+  clould:
+    build: .
+    volumes:
+      - ./../../:/usr/src/clould/
+    working_dir: /usr/src/stats-delivery/build/libs
+    command: [ "java", "-jar", "cloud.war" ]
+    ports:
+      - "8080:8080"
+    networks:
+      cloud:
+        ipv4_address: 172.16.0.2
