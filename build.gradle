@@ -7,18 +7,20 @@ plugins {
 
 group = 'com.drekerd'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-/*    acceptanceTestsCompile.extendsFrom testCompile
-    acceptanceTestsRuntime.extendsFrom testRuntime*/
-
+    acceptanceTestsCompile.extendsFrom testCompile
+    acceptanceTestsRuntime.extendsFrom testRuntime
     acceptanceTestsImplementation.extendsFrom testImplementation
-/*    acceptanceTestsRuntime.extendsFrom testRuntime
-    acceptanceTeststestAnnotationProcessor.extendsFrom testAnnotationProcessor*/
+    acceptanceTestsAnnotationProcessor.extendsFrom testAnnotationProcessor
 }
 
 docker {
@@ -38,22 +40,26 @@ sourceSets {
 }
 
 task acceptanceTests(type: Test) {
-    useJUnitPlatform()
-    dependsOn 'clean', 'build'
-
     testLogging.showStandardStreams = true
     testLogging.exceptionFormat = 'full'
-
 
     description = 'Runs the acceptance tests'
     /*group = 'verification'*/
     testClassesDirs = sourceSets.acceptanceTests.output
     classpath = sourceSets.acceptanceTests.runtimeClasspath
+    outputs.upToDateWhen { false }
 }
 
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url 'https://repo.repsy.io/mvn/drekerd/drekerd'
+        credentials {
+            username 'Drekerd'
+            password 'pEXJQMe2E9q5eCs7ZZZYQEmRv'
+        }
+    }
 }
 
 dependencies {
