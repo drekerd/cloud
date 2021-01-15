@@ -9,14 +9,14 @@ networks:
       config:
         - subnet: 172.16.0.1/16
 services:
-  clould:
-    build: .
+  cloud:
+    image: cloud:latest
     volumes:
-      - ./../../:/usr/src/clould/
-    working_dir: /usr/src/stats-delivery/build/libs
+      - ./../../:/usr/src/cloud/
+    working_dir: /usr/src/cloud/build/libs
     command: [ "java", "-jar", "cloud.war" ]
     ports:
       - "8080:8080"
     networks:
-      cloud:
+      pricelist:
         ipv4_address: 172.16.0.2
