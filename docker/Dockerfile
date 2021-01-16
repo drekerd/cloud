@@ -1,5 +1,6 @@
 FROM openjdk:11
-VOLUME /tmp
-ADD build/libs/*.jar cloud.jar
-COPY ./ .
-CMD ["java", "-jar", "cloud.jar"]
+
+COPY . /usr/cloud/
+COPY build/libs/*.jar /usr/cloud/build/libs/cloud.jar
+
+CMD ["java", "-jar", "/usr/cloud/build/libs/cloud.jar"]

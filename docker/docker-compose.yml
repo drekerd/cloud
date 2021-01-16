@@ -10,11 +10,8 @@ networks:
         - subnet: 172.16.0.1/16
 services:
   cloud:
-    image: cloud:latest
-    volumes:
-      - ./../../:/usr/src/cloud/
-    working_dir: /usr/src/cloud/build/libs
-    command: [ "java", "-jar", "cloud.war" ]
+    image: cloud
+    working_dir: /usr/cloud
     ports:
       - "8080:8080"
     networks:
