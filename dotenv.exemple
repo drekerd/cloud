@@ -1,0 +1,4 @@
+DOCKER_FILE_PATH=docker/Dockerfile
+PROJECT_NAME=cloud
+DOCKER_COMPOSE_FILE=docker/docker-compose.yml
+DOCKER_PROJECT_NAME=pricelist

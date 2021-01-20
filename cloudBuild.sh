@@ -11,7 +11,7 @@ remove_docker_image() {
 }
 
 up_containers() {
-  docker-compose -f ${DOCKER_COMPOSE_FILE} --project-name ${DOCKER_PROJECT_NAME} up -d
+  docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
 }
 
 down_containers() {
