@@ -8,9 +8,9 @@ https://direnv.net/
 Rename file rename `dotenv.exmple` and `dotenvrc.exemple` to `.env` and `.envrc`
 If you add new env vars, please do not forget to update dotenv.exemple
 
-DOCKER_FILE_PATH={path to docker file}
-DOCKER_COMPOSE_FILE={path to docker-compose file}
-PROJECT_NAME={project name }
+- DOCKER_FILE_PATH={path to docker file}
+- DOCKER_COMPOSE_FILE={path to docker-compose file}
+- PROJECT_NAME={project name }
 
 # First Time Run
 Be sure to have installed
