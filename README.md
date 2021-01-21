@@ -15,17 +15,17 @@ PROJECT_NAME={project name }
 # First Time Run
 Be sure to have installed
 
-|Name                 |Guide                                    |
------------------------------------------------------------------
-|- direnv            | https://direnv.net/                      |
-|- docker            | https://docs.docker.com/get-docker/      |
-|- docker-compose    | https://docs.docker.com/compose/install/ |
+| Name              | URL                                       |
+| ------------------|-------------------------------------------|
+| `direnv`          | https://direnv.net/                       |
+| `docker`          | https://docs.docker.com/get-docker/       |
+| `docker-compose`  | https://docs.docker.com/compose/install/  |
 
 After install and have your application cloned from git repository proceed with:
-Create Docker Image
-- `./cloudBuild.sh -e createDockerImage`
-Up the application in a docker container
-- `./cloudBuild.sh -e upConatainers`
+1. Create Docker Image 
+    - `./cloudBuild.sh -e createDockerImage`
+2. Up the application in a docker container
+    - `./cloudBuild.sh -e upConatainers`
 
 ## Build, Clean, Test, Acceptance Test
 You have two alternatives
@@ -39,13 +39,14 @@ To run a command simply type `./cloudBuild.sh -e createDockerImage`
 You can also run multiple commands, for exemple:
 `./cloudBuild.sh -e createDockerImage upContainers build acceptanceTests`
 
-|Name | Description|
-| createDockerImage | Creates a docker image based on dockerfile in your project |
-| removeDockerImage | Removes the image based on the name that is preconfigured |
+|Name               | Description                                                                       |
+|-------------------|-----------------------------------------------------------------------------------|
+| createDockerImage | Creates a docker image based on dockerfile in your project                        |
+| removeDockerImage | Removes the image based on the name that is preconfigured                         |
 | upContainers      | SetUps the containers based on the image created from command `createDockerImage` |
-| downContainers    | Stops and removes the running containers as well as the network |
-| unitTests         | Runs the unit Tests |
-| AcceptanceTests   | Runs the Acceptance Tests |
+| downContainers    | Stops and removes the running containers as well as the network                   |
+| unitTests         | Runs the unit Tests                                                               |
+| AcceptanceTests   | Runs the Acceptance Tests                                                         |
 
 # dockerfile and docker-compose
 dir docker/
