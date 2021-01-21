@@ -37,7 +37,7 @@ The Need for this command is primarily to use control your docker environment. <
 To see what the script **./cloudBuild.sh** file can do just type `./cloudBuild.sh` and it shows a list of commands <br />
 To run a command simply type `./cloudBuild.sh -e createDockerImage` <br />
 You can also run multiple commands, for exemple: <br />
->`./cloudBuild.sh -e createDockerImage upContainers build acceptanceTests`
+`./cloudBuild.sh -e createDockerImage upContainers build acceptanceTests`
 
 |Name               | Description                                                                       |
 |-------------------|-----------------------------------------------------------------------------------|
