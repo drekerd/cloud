@@ -28,8 +28,8 @@ After install and have your application cloned from git repository proceed with:
     - `./cloudBuild.sh -e upConatainers`
 
 ## Build, Clean, Test, Acceptance Test
-You have two alternatives
-You can use either `./gradlew build` or use the file `./cloudBuild.sh -e build` located in the root directory
+You have two alternatives. <br />
+You can use either `./gradlew build` or use the file `./cloudBuild.sh -e build` located in the root directory. <br />
 For other commands as well `./gradlew test` `./cloudBuild.sh -e build`
 
 ## cloudBuild.sh file
@@ -49,10 +49,11 @@ You can also run multiple commands, for exemple:
 | AcceptanceTests   | Runs the Acceptance Tests                                                         |
 
 # dockerfile and docker-compose
-dir docker/
+`cd docker/`
 
 # AcceptanceTests
-dir: src/acceptanceTests/
+`cd src/acceptanceTests/`
+
 # AcceptanceTests reports
 You can find acceptanceTests reports in `buid/reports/`
 
