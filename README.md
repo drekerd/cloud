@@ -33,11 +33,11 @@ You can use either `./gradlew build` or use the file `./cloudBuild.sh -e build` 
 For other commands as well `./gradlew test` `./cloudBuild.sh -e build`
 
 ## cloudBuild.sh file
-The Need for this command is primarily to use control your docker environment
-To see what the script **./cloudBuild.sh** file can do just type `./cloudBuild.sh` and it shows a list of commands
-To run a command simply type `./cloudBuild.sh -e createDockerImage`
-You can also run multiple commands, for exemple:
-`./cloudBuild.sh -e createDockerImage upContainers build acceptanceTests`
+The Need for this command is primarily to use control your docker environment. <br />
+To see what the script **./cloudBuild.sh** file can do just type `./cloudBuild.sh` and it shows a list of commands <br />
+To run a command simply type `./cloudBuild.sh -e createDockerImage` <br />
+You can also run multiple commands, for exemple: <br />
+>`./cloudBuild.sh -e createDockerImage upContainers build acceptanceTests`
 
 |Name               | Description                                                                       |
 |-------------------|-----------------------------------------------------------------------------------|
