@@ -26,6 +26,7 @@ After install and have your application cloned from git repository proceed with:
     - `./cloudBuild.sh -e createDockerImage`
 2. Up the application in a docker container
     - `./cloudBuild.sh -e upConatainers`
+3. Application should be listening in localhost:8080
 
 ## Build, Clean, Test, Acceptance Test
 You have two alternatives. <br />
