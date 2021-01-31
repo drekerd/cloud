@@ -27,7 +27,7 @@ public class ProductController extends BaseController {
 	}
 
 	@GetMapping("/")
-	public ResponseEntity<List<ProductDTO>> getAllAproducts(){
+	public ResponseEntity<List<ProductDTO>> getAllProducts(){
 		return createOkResponse(productFacade.getAllProducts());
 	}
 }
