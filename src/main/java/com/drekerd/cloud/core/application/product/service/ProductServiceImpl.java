@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
 
 		Product product4 = new Product.ProductBuilder()
 				.withId(4)
-				.withName("Maionese")
+				.withName("Barbacue")
 				.withPrice(new BigDecimal("1.00"))
 				.withCurrency("EUR")
 				.withOrigin("Lidl")
