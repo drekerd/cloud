@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         glue = {"com.drekerd.papitest"},
         tags = {
-                "@HelloTest"
+                "@GetProduct"
         }
 )
 public class Functional {

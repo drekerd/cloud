@@ -7,7 +7,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.16.0.1/16
+        - subnet: 172.28.0.1/16
 services:
   cloud:
     image: cloud
@@ -16,4 +16,4 @@ services:
       - "8080:8080"
     networks:
       pricelist:
-        ipv4_address: 172.16.0.2
+        ipv4_address: 172.28.0.2

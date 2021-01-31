@@ -1,6 +1,5 @@
 package com.drekerd.cloud.entrypoint;
 
-import org.springframework.boot.env.RandomValuePropertySourceEnvironmentPostProcessor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 public class BaseController {
 
     public <T> ResponseEntity<T> createOkResponse(final T response) {
+        System.out.print    (response.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
