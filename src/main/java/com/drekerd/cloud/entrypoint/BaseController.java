@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public class BaseController {
 
     public <T> ResponseEntity<T> createOkResponse(final T response) {
-        System.out.print    (response.toString());
+        System.out.print(response);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

@@ -27,7 +27,7 @@ docker {
     name "${project.name}"
     dockerfile file('docker/Dockerfile')
     copySpec.from(jar).rename(".*", "cloud.jar")
-    buildArgs(['JAR_FILE': "could.jar"])
+    buildArgs(['JAR_FILE': "cloud.jar"])
 }
 
 sourceSets {

@@ -1,4 +1,0 @@
-com/drekerd/cloud/CloudApplicationTests.java
- com.drekerd.cloud.CloudApplicationTests
-com/drekerd/cloud/entrypoint/HelloControllerTest.java
- com.drekerd.cloud.entrypoint.HelloControllerTest

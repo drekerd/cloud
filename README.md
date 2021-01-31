@@ -5,12 +5,12 @@ Cloud is the main api service for Pricelist application
 ## To manage project env vars, install direnv
 https://direnv.net/
 
-Rename file rename `dotenv.exmple` and `dotenvrc.exemple` to `.env` and `.envrc`
-If you add new env vars, please do not forget to update dotenv.exemple
+Rename file rename `dotenv.example` and `dotenvrc.example` to `.env` and `.envrc`
+If you add new env vars, please do not forget to update dotenv.example
 
 - DOCKER_FILE_PATH={path to docker file}
 - DOCKER_COMPOSE_FILE={path to docker-compose file}
-- PROJECT_NAME={project name }
+- PROJECT_NAME={project name}
 
 # First Time Run
 Be sure to have installed
@@ -25,7 +25,7 @@ After install and have your application cloned from git repository proceed with:
 1. Create Docker Image 
     - `./cloudBuild.sh -e createDockerImage`
 2. Up the application in a docker container
-    - `./cloudBuild.sh -e upConatainers`
+   - `./cloudBuild.sh -e upContainers`
 3. Application should be listening in localhost:8080
 
 ## Build, Clean, Test, Acceptance Test

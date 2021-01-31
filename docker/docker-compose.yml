@@ -14,6 +14,7 @@ services:
     working_dir: /usr/cloud
     ports:
       - "8080:8080"
+      - "8081:8081"
     networks:
       pricelist:
         ipv4_address: 172.28.0.2
