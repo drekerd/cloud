@@ -4,7 +4,6 @@ import com.drekerd.cloud.core.application.product.repository.ProductRepository;
 import com.drekerd.cloud.core.domain.product.Product;
 import com.drekerd.cloud.entrypoint.response.ProductDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -12,17 +11,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+//@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProductServiceImpl implements ProductService {
 
 	/*Need to understand the @RequiredArgsConstructor :facepalm: */
 
-	@Autowired
 	private final ProductRepository productRepository;
+
+	public ProductServiceImpl(ProductRepository productRepository) {
+		this.productRepository = productRepository;
+	}
 
 	@Override
 	public List<ProductDTO> getProductByName(String name) {
@@ -33,7 +32,8 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<ProductDTO> getAllProducts() {
 		List<Product> products = productRepository.findAllProducts();
-		return productDTOConverter(products);
+		List<Product> productsSorted = sortProducts(products);
+		return productDTOConverter(productsSorted);
 	}
 
 	private List<Product> getProductsWithName(final String name) {

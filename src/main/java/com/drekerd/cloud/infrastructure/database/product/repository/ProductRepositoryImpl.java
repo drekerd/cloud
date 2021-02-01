@@ -21,8 +21,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	private final List<Product> products = new ArrayList<>();
 
 	//Temporary ofc
-	@PostConstruct
-	public void constructor() {
+	private List<Product> constructor() {
 
 		Product product1 = new Product.ProductBuilder()
 				.withId(1)
@@ -70,10 +69,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 		products.add(product4);
 		products.add(product5);
 
+		return products;
 	}
 
 	@Override
 	public List<Product> findAllProducts() {
-		return products;
+		return constructor();
 	}
 }

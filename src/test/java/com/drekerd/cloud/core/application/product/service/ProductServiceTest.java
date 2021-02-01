@@ -1,11 +1,13 @@
 package com.drekerd.cloud.core.application.product.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,9 +16,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.drekerd.cloud.core.application.product.repository.ProductRepository;
 import com.drekerd.cloud.core.domain.product.Product;
 import com.drekerd.cloud.entrypoint.response.ProductDTO;
-import com.drekerd.cloud.infrastructure.database.product.repository.ProductRepositoryImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
@@ -25,7 +27,7 @@ public class ProductServiceTest {
 	ProductServiceImpl productServiceImpl;
 
 	@Mock
-	ProductRepositoryImpl productRepository;
+	ProductRepository productRepository;
 
 	@Before
 	public void prepare() {
@@ -88,11 +90,66 @@ public class ProductServiceTest {
 		createObjects();
 	}
 
-	// Not possible to test this motherfucker!!!! always returns 0, EMPTY, BOLA! :facepalm:
 	@Test
-	public void get_product_by_name() {
+	public void get_product_by_name_returns_Nr_of_elements() {
+		createObjects();
 		when(productRepository.findAllProducts()).thenReturn(products);
 		List<ProductDTO> products = productServiceImpl.getProductByName("Ketchup");
-		System.out.println("SIZE: " + products.size());
+		assertEquals(3, products.size());
+		assertEquals("ketchup", products.get(0).getName());
+		assertEquals("Ketchup", products.get(1).getName());
+		assertEquals("Ketchup", products.get(2).getName());
 	}
+
+	@Test
+	public void get_product_by_name_returns_Sort_by_Price() {
+		createObjects();
+		when(productRepository.findAllProducts()).thenReturn(products);
+		List<ProductDTO> products = productServiceImpl.getProductByName("Ketchup");
+		assertEquals(3, products.size());
+		assertEquals("1.00", products.get(0).getPrice().toString());
+		assertEquals("1.50", products.get(1).getPrice().toString());
+		assertEquals("1.60", products.get(2).getPrice().toString());
+	}
+
+	@Test
+	public void get_product_by_name_returns_empty_list_when_string_empty() {
+		createObjects();
+		when(productRepository.findAllProducts()).thenReturn(products);
+		List<ProductDTO> products = productServiceImpl.getProductByName("");
+
+		assertEquals(0, products.size());
+	}
+
+	@Test
+	public void get_product_by_name_returns_empty_list_when_product_not_exist() {
+		createObjects();
+		when(productRepository.findAllProducts()).thenReturn(products);
+		List<ProductDTO> products = productServiceImpl.getProductByName("texugo");
+
+		assertEquals(0, products.size());
+	}
+
+	@Test
+	public void get_all_products() {
+		createObjects();
+		when(productRepository.findAllProducts()).thenReturn(products);
+		List<ProductDTO> products = productServiceImpl.getAllProducts();
+		assertEquals(5, products.size());
+	}
+
+	@Test
+	public void get_all_products_sort_by_price() {
+		createObjects();
+		when(productRepository.findAllProducts()).thenReturn(products);
+		List<ProductDTO> products = productServiceImpl.getAllProducts();
+
+		assertEquals(5, products.size());
+		assertEquals("1.00", products.get(0).getPrice().toString());
+		assertEquals("1.00", products.get(1).getPrice().toString());
+		assertEquals("1.30", products.get(2).getPrice().toString());
+		assertEquals("1.50", products.get(3).getPrice().toString());
+		assertEquals("1.60", products.get(4).getPrice().toString());
+	}
+
 }
