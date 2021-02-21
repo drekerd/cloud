@@ -12,7 +12,7 @@ remove_docker_image() {
 
 up_containers() {
   docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
-#  import_database
+  import_database
 }
 
 down_containers() {
@@ -35,8 +35,8 @@ acceptance_tests() {
   ./gradlew acceptanceTests
 }
 
-import_database(){
-./gradlew flyWay
+import_database() {
+  ./gradlew flyWay
 }
 
 exec_commands() {
@@ -66,6 +66,9 @@ exec_commands() {
     acceptanceTests)
       acceptance_tests
       ;;
+    runMigrations)
+      import_database
+      ;;
     esac
   done
 }
@@ -92,6 +95,8 @@ downContainers
 unitTests
 
 acceptanceTests
+
+runMigrations
 
 EOF
   ;;
