@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -71,7 +70,7 @@ public class ProductControllerTest {
 				.build());
 	}
 
-	@Before
+	@BeforeEach
 	public void create() {
 		createObjects();
 	}

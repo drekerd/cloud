@@ -12,6 +12,7 @@ remove_docker_image() {
 
 up_containers() {
   docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
+#  import_database
 }
 
 down_containers() {
@@ -34,9 +35,19 @@ acceptance_tests() {
   ./gradlew acceptanceTests
 }
 
+import_database(){
+./gradlew flyWay
+}
+
 exec_commands() {
   for var in $@; do
     case "$var" in
+    build)
+      build
+      ;;
+    clean)
+      clean
+      ;;
     createDockerImage)
       create_docker_image
       ;;
@@ -66,6 +77,10 @@ case $1 in
 *)
 
   cat <<-EOF
+Clean
+
+Build
+
 createDockerImage
 
 removeDockerImage

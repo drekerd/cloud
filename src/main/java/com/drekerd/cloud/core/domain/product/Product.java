@@ -2,18 +2,36 @@ package com.drekerd.cloud.core.domain.product;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.Getter;
 
 @Getter
+@Entity(name = "products")
 public class Product {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private BigDecimal price;
+
+	@Column(nullable = false)
 	private String currency;
+
+	@Column(nullable = false)
 	private String origin;
 
-	private Product(){}
+	protected Product() {
+	}
 
 	// Temporary builder, replace with lombok, this one was just a case of study and understanding
 	public static class ProductBuilder {
@@ -23,34 +41,35 @@ public class Product {
 		private String currency;
 		private String origin;
 
-		public ProductBuilder(){}
+		public ProductBuilder() {
+		}
 
-		public ProductBuilder withId(final long id){
+		public ProductBuilder withId(final long id) {
 			this.id = id;
 			return this;
 		}
 
-		public ProductBuilder withName(final String name){
+		public ProductBuilder withName(final String name) {
 			this.name = name;
 			return this;
 		}
 
-		public ProductBuilder withPrice(final BigDecimal price){
+		public ProductBuilder withPrice(final BigDecimal price) {
 			this.price = price;
 			return this;
 		}
 
-		public ProductBuilder withCurrency(final String currency){
+		public ProductBuilder withCurrency(final String currency) {
 			this.currency = currency;
 			return this;
 		}
 
-		public ProductBuilder withOrigin(final String origin){
+		public ProductBuilder withOrigin(final String origin) {
 			this.origin = origin;
 			return this;
 		}
 
-		public Product build(){
+		public Product build() {
 			Product product = new Product();
 			product.id = this.id;
 			product.name = this.name;
@@ -58,7 +77,7 @@ public class Product {
 			product.currency = this.currency;
 			product.origin = this.origin;
 
-			return  product;
+			return product;
 		}
 	}
 }

@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
     id 'com.palantir.docker' version '0.25.0'
+    id 'org.flywaydb.flyway' version '7.5.3'
 }
 
 group = 'com.drekerd'
@@ -28,6 +29,13 @@ docker {
     dockerfile file('docker/Dockerfile')
     copySpec.from(jar).rename(".*", "cloud.jar")
     buildArgs(['JAR_FILE': "cloud.jar"])
+}
+
+flyway {
+    user = 'root'
+    password = 'root'
+    driver = 'com.mysql.jdbc.Driver'
+    url = "jdbc:mysql://${System.getenv('MYSQL_HOST')}:${System.getenv('MYSQL_PORT')}/${System.getenv('MYSQL_DATABASE')}"
 }
 
 sourceSets {
@@ -64,36 +72,23 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java'
+    implementation 'org.flywaydb:flyway-core:7.5.3'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testImplementation 'io.cucumber:cucumber-java:5.6.0'
     testImplementation 'io.cucumber:cucumber-junit:5.6.0'
 
-    /*implementation('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
-        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
-    }*/
-
     acceptanceTestsImplementation('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
         exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
     }
-
-    /*
-    testCompile('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
-        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
-    }
-
-    acceptanceTestsCompile('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
-        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
-    }
-
-    testRuntimeOnly('com.drekerd:papi-test:1.0.1-SNAPSHOT') {
-        exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
-    }*/
-
 
 }
 
